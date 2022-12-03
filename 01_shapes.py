@@ -2,6 +2,32 @@
 
 import simple_draw as sd
 
+sd.resolution = (1200,600)
+a = (8,600,200,100,22)
+
+def polygonner (side_quantity,x,y,length, angle_0):
+    color_s=(250,20,20)
+    init_point = sd.get_point(x,y)
+    start_point = init_point
+    poly_angle = 360/side_quantity
+    for i in  range(0,side_quantity):
+        vector = sd.get_vector(start_point,angle_0+poly_angle*i,length)
+        finish_point =vector.end_point
+        if i == side_quantity-1:
+            finish_point= init_point
+        poly_side(start_point,finish_point,color_s)
+        start_point = finish_point
+
+
+def poly_side(start_p,finish_p,color_s):
+    sd.circle(start_p,10)
+    sd.line(start_p,finish_p,color_s,5)
+    sd.circle(start_p,7)
+
+
+poly_arg = [12,600,200,100,22]
+polygonner(*poly_arg)
+
 # Часть 1.
 # Написать функции рисования равносторонних геометрических фигур:
 # - треугольника
